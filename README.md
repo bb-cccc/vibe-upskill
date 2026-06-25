@@ -292,13 +292,13 @@ metadata:
 
 ### 5.3 跨平台兼容性
 
-| 平台 | Claude Code 版本 | 支持状态 |
+| 平台 |  支持状态 |
 |------|-----------------|----------|
-| VS Code (Windows/macOS/Linux) | Claude Code 扩展 v1.0+ | ✅ 完全支持 |
-| CLI (macOS/Linux) | claude CLI v1.0+ | ✅ 完全支持 |
-| Web (claude.ai/code) | Web 版 | ✅ 支持（手动粘贴 SKILL.md 内容） |
-| JetBrains IDEs | Claude Code 插件 | ✅ 完全支持 |
-| 其他 Agent 平台 | N/A | ⚠️ 通用格式，需手动适配（见 [示例四](references/examples.md#示例四在-claude-code--codex-中使用)） |
+| VS Code (Windows/macOS/Linux) |  ✅ 完全支持 |
+| CLI (macOS/Linux) |  ✅ 完全支持 |
+| Web (claude.ai/code) |  ✅ 支持（手动粘贴 SKILL.md 内容） |
+| JetBrains IDEs |  ✅ 完全支持 |
+| 其他 Agent 平台 |  ⚠️ 通用格式，需手动适配（见 [示例四](references/examples.md#示例四在-claude-code--codex-中使用)） |
 
 ---
 
@@ -306,7 +306,8 @@ metadata:
 
 ### 示例一：复盘一次 Docker 排错对话 → 生成面试题
 
-**输入**：粘贴一段 Agent 帮你排查 Docker 容器启动失败的对话。
+**输入1**：粘贴一段 Agent 帮你排查 Docker 容器启动失败的对话。
+**输入2**：直接告知与Agent会话的会话名。
 
 **Skill 处理流程**：
 
