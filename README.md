@@ -1,438 +1,437 @@
-<!-- ═══════════════════════════════════════════════════════════════════════ -->
-<!--                        README.md — Vibe Upskill                    -->
-<!--                         中文为主，English sections inline                  -->
-<!-- ═══════════════════════════════════════════════════════════════════════ -->
-
 <h1 align="center">🧠 vibe-upskill</h1>
-<h3 align="center">从 AI Agent 对话中提炼真正的开发能力</h3>
-<h3 align="center">复盘 Vibe Coding 过程，自动生成面试题与知识库</h3>
-<h4 align="center"><em>Extract Real Engineering Skills from AI Agent Conversations</em></h4>
+<h3 align="center">Extract Real Engineering Skills from AI Agent Conversations</h3>
+<h3 align="center">Review Your Vibe Coding Sessions — Auto-Generate Interview Questions & Knowledge Base</h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-2.2.0-blue" alt="version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
-  <img src="https://img.shields.io/badge/platform-通用_AI_Agent-orange" alt="platform">
-  <img src="https://img.shields.io/badge/language-中文-brightgreen" alt="language">
+  <img src="https://img.shields.io/badge/platform-Universal_AI_Agent-orange" alt="platform">
+  <img src="https://img.shields.io/badge/language-English-brightgreen" alt="language">
+</p>
+
+<p align="center">
+  <a href="README_CN.md">中文版</a>
 </p>
 
 ---
 
-## 📦 1. 项目简介 / Project Overview
+## 📦 1. Project Overview
 
-### 一句话简介 / One-Liner
+### One-Liner
 
-**将你与 AI Agent 的开发对话（需求→设计→编码→排错→部署）转化为可内化的面试场景题、避坑清单和结构化知识库。**
-*Turn your AI-agent development conversations (requirements → design → coding → debugging → deployment) into interview scenario questions, pitfall checklists, and a structured knowledge base you actually own.*
+**Turn your AI-agent development conversations (requirements → design → coding → debugging → deployment) into interview scenario questions, pitfall checklists, and a structured knowledge base you actually own.**
 
+### The Problem
 
-### 问题 / The Problem
+In the era of Vibe Coding, developers use AI Agents for everything from writing code to debugging and deployment. Productivity is soaring, but a side effect is spreading:
 
-Vibe Coding 时代，开发者用 AI Agent 完成从写代码、排错到部署的全流程。生产力飙升的同时，一个副作用正在蔓延：
+> **When you step away from the Agent (e.g., during an interview), your own design, debugging, and ops skills have atrophied.**
 
-> **离开 Agent 之后（比如面试时），开发者自身的设计能力、排错能力、运维能力变弱了。**
+Trying to learn these skills on your own faces three obstacles:
+1. **Information overload** — online tutorials are disconnected from your real projects
+2. **Unknown unknowns** — the Agent handled it for you, so you don't even know the pitfall exists
+3. **No review mechanism** — knowledge fades after days without a system to convert it into long-term memory
 
-单独去学这些知识，又面临三个困境：
-1. **资源多而杂**——网上教程与你的真实项目脱节
-2. **不知道学什么**——Agent 帮你做掉了，你甚至不知道有个坑存在
-3. **没有复习机制**——看过的知识几天后就忘了，无法转化为长期记忆
+### The Solution
 
-### 解决方案 / The Solution
+vibe-upskill is a **universal AI Agent Skill** — essentially a carefully designed system prompt that works with Claude Code, Cursor, ChatGPT, Copilot Chat, and any other AI Agent. It processes your full development conversations with AI Agents in three steps:
 
-vibe-upskill 是一个**通用 AI Agent Skill**——本质是一套精心设计的 system prompt，可以在 Claude Code、Cursor、ChatGPT、Copilot Chat 等任意 AI Agent 中使用。它对你与 AI Agent 的完整开发对话进行三步处理：
+| Step | What It Does | Output |
+|------|-------------|--------|
+| 🧲 Mode 1 · Signal Extraction | Extract valuable decisions, debugging insights, and architecture choices from conversations | 5-dimension knowledge signals (Architecture / Coding / Debugging / Deployment / Methodology) |
+| 🎯 Mode 2 · Question Generation | Transform knowledge into 10 types of interview scenario questions with counterfactual reasoning | Structured, self-assessable question bank |
+| 🗄️ Mode 3 · Knowledge Distillation | Structured storage + spaced repetition scheduling + expiry archiving | Growing personal knowledge base, pitfall checklist, review schedule |
 
-| 步骤 | 做什么 | 产出 |
-|------|--------|------|
-| 🧲 模式一·拦截记录 | 从对话中提取有价值的决策、排错思路、架构选型 | 5 维度知识信号（架构/编码/排错/部署/方法论） |
-| 🎯 模式二·面试题生成 | 将知识转化为 10 类面试场景题，含反事实推理 | 可复述、可自评的结构化题库 |
-| 🗄️ 模式三·知识蒸馏 | 结构化存储 + 间隔复习调度 + 过期归档 | 持续增长的个人知识库、避坑清单、复习调度表 |
-
-**核心理念**：不是复制 Agent 做了什么，而是理解它**为什么**这么做。
-
-> *Don't record what the agent did — understand **why** it did it.*
+**Core philosophy**: Don't record what the agent did — understand **why** it did it.
 
 ---
 
-## 🗺️ 2. 目录 / Table of Contents
+## 🗺️ 2. Table of Contents
 
-| 章节 | 内容 |
-|------|------|
-| [1. 项目简介](#1-项目简介--project-overview) | 问题、解决方案、核心理念 |
-| [2. 目录](#2-目录--table-of-contents) | 本目录 |
-| [3. 快速开始](#3-快速开始--quick-start) | 5 分钟上手指南 |
-| [4. 核心功能](#4-核心功能--core-features) | 三大模式 + 防御机制详解 |
-| [5. 配置](#5-配置--configuration) | 可自定义选项 |
-| [6. 使用示例](#6-使用示例--usage-examples) | 6 个典型场景完整演示 |
-| [7. 工作原理](#7-工作原理--how-it-works) | 架构设计、复习算法、渐进式提醒 |
-| [8. 文件结构](#8-文件结构--project-structure) | 目录树及文件说明 |
-| [9. 贡献指南](#9-贡献指南--contributing) | 如何参与贡献 |
-| [10. 许可证](#10-许可证--license) | MIT License |
-| [11. 致谢](#11-致谢--acknowledgments) | 灵感来源与参考 |
-
----
-
-## 3. 快速开始 / Quick Start
-
-### 3.1 前置依赖 / Prerequisites
-
-| 依赖 | 说明 |
-|------|------|
-| 任意 AI Agent | Claude Code、Cursor、ChatGPT、Copilot Chat 等均可 |
-| 一个 AI Agent 开发对话记录 | 与 Claude、Copilot、Cursor 等 Agent 的聊天历史 |
-| （可选）Git | 用于版本管理你的知识库 |
-
-### 3.2 安装 / Installation
-
-把下面这句话发给任意 AI Agent（Claude Code、Cursor、Copilot、ChatGPT 等均可）：
-
-```
-帮我安装这个 Skill：https://github.com/bb-cccc/vibe-upskill
-```
-
-Agent 会自动完成克隆、放置到正确目录、验证安装全流程。不需要手动敲任何命令。
-
-### 3.3 基本用法 / Basic Usage
-
-安装后在对话中描述你的复盘需求即可激活：
-
-```
-示例1：帮我复盘 [对话名称]，比如"昨天的 Docker 排错对话"
-示例2：根据 [对话名称] 生成面试题
-示例3：整理一下我最近的避坑清单
-```
-
-**首次使用**时，Skill 会引导你完成 3 项自评（准备阶段 / 技术栈 / 学习目标），之后生成的题目难度将自动适配。
+| Section | Content |
+|---------|---------|
+| [1. Project Overview](#1-project-overview) | Problem, solution, core philosophy |
+| [2. Table of Contents](#2-table-of-contents) | This section |
+| [3. Quick Start](#3-quick-start) | 5-minute guide |
+| [4. Core Features](#4-core-features) | Three modes + defense mechanisms |
+| [5. Configuration](#5-configuration) | Customizable options |
+| [6. Usage Examples](#6-usage-examples) | 6 complete scenario demos |
+| [7. How It Works](#7-how-it-works) | Architecture, review algorithm, progressive reminders |
+| [8. Project Structure](#8-project-structure) | Directory tree and file descriptions |
+| [9. Contributing](#9-contributing) | How to contribute |
+| [10. License](#10-license) | MIT License |
+| [11. Acknowledgments](#11-acknowledgments) | Inspirations and references |
 
 ---
 
-## 4. 核心功能 / Core Features
+## 3. Quick Start
 
-### 4.1 模式一：拦截记录 / Signal Extraction
+### 3.1 Prerequisites
 
-从冗长的 Agent 对话中提取 **5 个维度** 的知识信号：
+| Requirement | Details |
+|-------------|---------|
+| Any AI Agent | Claude Code, Cursor, ChatGPT, Copilot Chat, etc. |
+| An AI Agent development conversation | Chat history from Claude, Copilot, Cursor, etc. |
+| (Optional) Git | For versioning your knowledge base |
 
-| 维度 | 提取什么 | 示例信号 |
-|------|----------|----------|
-| 🏗️ 架构决策 | 技术选型、设计模式、权衡取舍 | "选择 X 因为..."、"对比了 A 和 B" |
-| 💻 代码实现 | 关键模式、API 设计、状态管理 | 核心代码片段、重构过程 |
-| 🐛 排错过程 | 错误类型、诊断路径、修复策略 | 错误信息、排查步骤、"原来是..." |
-| 🚀 部署运维 | 环境配置、CI/CD、容器化 | Docker 命令、部署脚本 |
-| 🧠 方法论 | 问题拆解、方案调研、迭代优化 | 任务分解、搜索策略、方案对比 |
+### 3.2 Installation
 
-每条知识记录 6 个要素：`上下文 → 问题/决策 → Agent 做法 → 底层原理 → 替代方案 → 可迁移教训`
+Send the following to any AI Agent (Claude Code, Cursor, Copilot, ChatGPT, etc.):
 
-### 4.2 模式二：面试题生成 / Interview Question Generation
+```
+Help me install this Skill: https://github.com/bb-cccc/vibe-upskill
+```
 
-生成 **10 类** 面试场景题：
+The Agent will clone, install to the correct directory, and verify the installation automatically. No manual commands needed.
 
-| # | 类型 | 考察能力 |
-|---|------|----------|
-| 1 | 场景设计题 | 给定业务场景，设计技术方案 |
-| 2 | Bug 排查题 | 给定错误现象，分析根因 |
-| 3 | 深挖原理题 | 追问技术选型的底层原因 |
-| 4 | 代码审查题 | 发现代码中的问题并优化 |
-| 5 | 项目表达题 | 清晰表达项目背景、难点、成果 |
-| 6 | 系统设计题 | 规模扩展设计 |
-| 7 | 运维排障题 | 模拟线上故障排查 |
-| 8 | 方案对比题 | 对比两种方案的优劣和适用场景 |
-| 9 | 复盘反思题 | 回顾项目，提炼改进方向 |
-| 10 | 测试质量题 | 设计测试用例 |
+### 3.3 Basic Usage
 
-每道题包含：场景描述 → 问题 → 参考思路 → 答案要点 → **反事实推理** → 深挖追问
+After installation, describe your review needs in conversation to activate:
 
-### 4.3 模式三：知识蒸馏 / Knowledge Distillation
+```
+Example 1: Help me review [conversation name], e.g. "yesterday's Docker debugging session"
+Example 2: Generate interview questions based on [conversation name]
+Example 3: Organize my recent pitfall checklist
+```
 
-生成 **6 个持久化文件**，形成个人知识资产：
+**On first use**, the Skill will guide you through a 3-item self-assessment (preparation stage / tech stack / learning goals). Generated questions will then auto-adapt to your difficulty level.
+
+---
+
+## 4. Core Features
+
+### 4.1 Mode 1: Signal Extraction
+
+Extract knowledge signals across **5 dimensions** from lengthy Agent conversations:
+
+| Dimension | What It Extracts | Example Signals |
+|-----------|-----------------|-----------------|
+| 🏗️ Architecture Decisions | Tech choices, design patterns, trade-offs | "Chose X because...", "Compared A vs. B" |
+| 💻 Code Implementation | Key patterns, API design, state management | Core code snippets, refactoring process |
+| 🐛 Debugging Process | Error types, diagnostic paths, fix strategies | Error messages, troubleshooting steps, "Turns out..." |
+| 🚀 Deployment & Ops | Environment config, CI/CD, containerization | Docker commands, deployment scripts |
+| 🧠 Methodology | Problem decomposition, research, iteration | Task breakdown, search strategies, solution comparison |
+
+Each knowledge entry records 6 elements: `Context → Problem/Decision → Agent's Approach → Underlying Principles → Alternatives → Transferable Lessons`
+
+### 4.2 Mode 2: Interview Question Generation
+
+Generates **10 types** of interview scenario questions:
+
+| # | Type | What It Tests |
+|---|------|---------------|
+| 1 | Scenario Design | Design a technical solution for a given business scenario |
+| 2 | Bug Investigation | Analyze root cause from error symptoms |
+| 3 | Deep-Dive Principles | Probe the underlying reasons behind tech choices |
+| 4 | Code Review | Identify issues in code and optimize |
+| 5 | Project Communication | Clearly articulate project background, challenges, and outcomes |
+| 6 | System Design | Scale-oriented architecture design |
+| 7 | Ops Troubleshooting | Simulated production incident investigation |
+| 8 | Solution Comparison | Compare pros/cons and applicable contexts of two approaches |
+| 9 | Retrospective | Review a project and identify improvement directions |
+| 10 | Test Quality | Design test cases |
+
+Each question includes: Scenario → Problem → Reference Approach → Key Points → **Counterfactual Reasoning** → Follow-up Probes
+
+### 4.3 Mode 3: Knowledge Distillation
+
+Generates **6 persistent files**, forming a personal knowledge asset:
 
 ```
 knowledge/
-├── interview-qa.md          # 面试题库
-├── pitfall-checklist.md     # 避坑清单
-├── architecture-notes.md    # 架构决策笔记
-├── debugging-playbook.md    # 排错手册
-├── review-schedule.md       # 复习调度表（间隔复习引擎）
-├── knowledge-index.md       # 知识库索引
-└── archive/                 # 已归档的过时条目
+├── interview-qa.md          # Interview question bank
+├── pitfall-checklist.md     # Pitfall checklist
+├── architecture-notes.md    # Architecture decision notes
+├── debugging-playbook.md    # Debugging playbook
+├── review-schedule.md       # Review schedule (spaced repetition engine)
+├── knowledge-index.md       # Knowledge base index
+└── archive/                 # Archived outdated entries
 ```
 
-### 4.4 间隔复习引擎 / Spaced Repetition Engine
+### 4.4 Spaced Repetition Engine
 
-内置简化 [SM-2 算法](https://en.wikipedia.org/wiki/SuperMemo)，每次复述后根据掌握度（0/1/2）自动计算下次复习日期：
+Built-in simplified [SM-2 algorithm](https://en.wikipedia.org/wiki/SuperMemo). After each recall attempt, the next review date is auto-calculated based on mastery level (0/1/2):
 
 ```
-复述评分为 0（完全卡住）→ 重置为 1 天
-复述评分为 1（部分回忆）→ 间隔 × 0.5（不低于 1 天）
-复述评分为 2（流畅复述）→ 间隔 × 2（上限 120 天）
+Score 0 (completely stuck) → Reset to 1 day
+Score 1 (partial recall)   → Interval × 0.5 (min 1 day)
+Score 2 (fluent recall)    → Interval × 2 (max 120 days)
 ```
 
-间隔序列：**1天 → 3天 → 7天 → 14天 → 30天 → 60天 → 120天**
+Interval sequence: **1d → 3d → 7d → 14d → 30d → 60d → 120d**
 
-启动 Skill 时自动检查到期复习任务，今日到期 ≤ 3 道则逐道复习，超过则优先复习评分最低的 3 道。
+On Skill launch, review tasks due today are checked automatically. If ≤ 3 items are due, review them one by one. If more, prioritize the 3 with the lowest scores.
 
-### 4.5 防御机制 / Defense Mechanisms
+### 4.5 Defense Mechanisms
 
-9 道防御机制确保输出质量，避免"学了个寂寞"：
+9 defense mechanisms ensure output quality:
 
-| 机制 | 触发条件 | 行为 |
-|------|----------|------|
-| 🔍 用户确认 | AI 推断的决策理由 | 标注 `[待确认]`，反问用户 |
-| ✂️ 范围限制 | 对话超过 50 轮 | 建议分段复盘 |
-| 🗣️ 复述强制 | 每道题生成后 | 要求口述，自评 0/1/2 |
-| 📢 渐进式提醒 | 连续跳过 ≥3 道题 | 逐级加强提醒，10 道硬暂停 |
-| 🧹 信号过滤 | 提取知识点时 | 丢弃重复操作、无意义对话 |
-| 🏷️ 深度标注 | 知识点深度不足 | 标注 `[待深挖]` |
-| 🔗 去重合并 | 增量更新知识库 | 检测相似条目，合并而非重复 |
-| ⏳ 过期审查 | 条目超过 90 天 | 提醒审查，过时条目归档 |
-| 🧭 冷启动引导 | 首次使用无对话记录 | 提供启动路径，不硬凑 |
+| Mechanism | Trigger Condition | Behavior |
+|-----------|-------------------|----------|
+| 🔍 User Confirmation | AI-inferred decision rationale | Mark `[To Confirm]`, ask user |
+| ✂️ Scope Limiting | Conversation exceeds 50 turns | Suggest segmenting the review |
+| 🗣️ Recall Enforcement | After each question is generated | Require verbal recall, self-score 0/1/2 |
+| 📢 Progressive Reminders | ≥ 3 questions skipped consecutively | Escalating reminders; hard pause at 10 |
+| 🧹 Signal Filtering | When extracting knowledge | Discard repetitive ops and low-signal dialogue |
+| 🏷️ Depth Tagging | Superficial knowledge points | Mark `[Needs Deep Dive]` |
+| 🔗 Dedup & Merge | Incremental knowledge base updates | Detect similar entries, merge instead of duplicate |
+| ⏳ Expiry Review | Entry exceeds 90 days | Remind for review; archive outdated entries |
+| 🧭 Cold Start Guidance | First use with no conversation history | Provide a startup path; don't fabricate |
 
 ---
 
-## 5. 配置 / Configuration
+## 5. Configuration
 
-vibe-upskill 的核心指令在 `SKILL.md` 中，可自定义以下选项：
+vibe-upskill's core instructions reside in `SKILL.md`. The following can be customized:
 
-- **触发词**：在 `description` 字段的 `Triggers:` 后追加你的自定义触发词
-- **每日复习上限**：默认 5 道，可在"复习提醒机制"段落中修改
-- **知识库输出路径**：默认为 `knowledge/`，可在"模式三"段落中修改
-- **准备阶段**：首次使用时 Skill 会引导你自评，后续可随时手动调整难度分布
+- **Trigger words**: Append your custom triggers after `Triggers:` in the `description` field
+- **Daily review cap**: Default 5 questions; modify in the "Review Reminder" section
+- **Knowledge base output path**: Default `knowledge/`; modify in the "Mode 3" section
+- **Preparation stage**: The Skill guides you through a self-assessment on first use; difficulty distribution can be manually adjusted later
 
-如需自定义更多行为，直接编辑 [SKILL.md](SKILL.md) 中的对应段落即可——整个 Skill 就是一份可读的 prompt，没有隐藏的黑盒逻辑。
+For further customization, edit the relevant paragraph in [SKILL.md](SKILL.md) directly — the entire Skill is a readable prompt with no hidden black-box logic.
 
 ---
 
-## 6. 使用示例 / Usage Examples
+## 6. Usage Examples
 
-### 示例一：复盘一次 Docker 排错对话 → 生成面试题
+### Example 1: Review a Docker Debugging Session → Generate Interview Questions
 
-**输入1**：粘贴一段 Agent 帮你排查 Docker 容器启动失败的对话。
-**输入2**：直接告知与Agent会话的会话名。
+**Input 1**: Paste a conversation where the Agent helped troubleshoot a Docker container startup failure.
+**Input 2**: Tell the Agent the session name directly.
 
-**Skill 处理流程**：
+**Skill processing flow**:
 
-1. **模式一**：提取 5 个知识点（Alpine 缺少运行时、Docker 镜像分层、多阶段构建等）
-2. **模式二**：生成面试题——
+1. **Mode 1**: Extract 5 knowledge points (Alpine missing runtime, Docker image layering, multi-stage builds, etc.)
+2. **Mode 2**: Generate interview questions —
 
-> ### [Bug 排查题] Docker 容器启动后立即退出
-> **难度**：基础
+> ### [Bug Investigation] Docker Container Exits Immediately After Startup
+> **Difficulty**: Basic
 >
-> 你刚把一个 Python Web 应用容器化，执行 `docker run` 后容器立刻退出。
-> `docker logs` 显示 `"executable file not found in $PATH"`。
+> You just containerized a Python web app. Running `docker run` causes the container to exit immediately.
+> `docker logs` shows `"executable file not found in $PATH"`.
 >
-> **问题**：你的排查思路是什么？
+> **Question**: What's your troubleshooting approach?
 >
-> **反事实推理**：
-> - 如果这是 Node.js 应用，排查思路有什么不同？
-> - 如果公司安全策略要求必须用 Alpine，你怎么处理？
+> **Counterfactual Reasoning**:
+> - How would your approach differ for a Node.js application?
+> - If your company's security policy requires Alpine, how would you handle this?
 
-3. **模式三**：知识库追加 1 道面试题 + 1 条避坑条目
+3. **Mode 3**: Append 1 interview question + 1 pitfall entry to the knowledge base
 
-完整演示见 [示例一](references/examples.md#示例一从排错对话中提炼知识)
+Full demo: [Example 1](references/examples.md#example-1-extracting-knowledge-from-debugging-sessions)
 
 ---
 
-### 示例二：从架构对话提炼方案对比题
+### Example 2: Extract Solution Comparison Questions from Architecture Discussions
 
-**输入**：你描述了一个"Agent 建议用 PostgreSQL + Neo4j 双数据库"的架构决策。
+**Input**: You describe an architecture decision where "the Agent recommended PostgreSQL + Neo4j dual-database."
 
-**Skill 生成**：
+**Skill generates**:
 
-> ### [方案对比题] 为什么用 PostgreSQL + Neo4j 而不是全部 Neo4j？
-> **难度**：进阶
+> ### [Solution Comparison] Why PostgreSQL + Neo4j Instead of All Neo4j?
+> **Difficulty**: Intermediate
 >
-> **反事实推理**：
-> - 如果团队所有人熟悉 Neo4j，还会选双库吗？
-> - 如果图查询只占 5% 请求，双库运维成本还值得吗？
-> - PostgreSQL 的 Apache AGE 扩展能否替代 Neo4j？
+> **Counterfactual Reasoning**:
+> - If everyone on the team was proficient with Neo4j, would you still choose dual-database?
+> - If graph queries account for only 5% of requests, is the dual-database ops overhead worth it?
+> - Could PostgreSQL's Apache AGE extension replace Neo4j?
 
-完整演示见 [示例二](references/examples.md#示例二从架构设计对话中提炼知识)
-
----
-
-### 示例三：间隔复习流程
-
-三天前完成的复盘，今天启动 Skill 时：
-
-```
-AI：欢迎回来！
-
-📋 复习检查中... review-schedule.md 已加载
-
-今日到期复习：3 道题
-🟡 Q-001 Redis 缓存策略 — 上次评分 1 — 间隔 3 天
-🟡 Q-003 Docker 容器排查 — 上次评分 1 — 间隔 1 天
-🟡 Q-007 PostgreSQL vs MongoDB — 上次评分 0 — 间隔 1 天
-
-今天先处理到期复习，还是开始一次新的复盘？
-```
-
-完整演示见 [示例五](references/examples.md#示例五间隔复习流程)
+Full demo: [Example 2](references/examples.md#example-2-extracting-knowledge-from-architecture-design-discussions)
 
 ---
 
-### 示例四：冷启动（首次使用）
+### Example 3: Spaced Repetition Review Flow
 
-无历史对话记录时，Skill 不会硬凑，而是提供具体的启动路径：
+Three days after a review session, when launching the Skill:
 
 ```
-AI：因为没有现成的对话记录，给你一个最小启动路径：
+AI: Welcome back!
 
-1. 下次用 Agent 开发时，在对话开头说"请在做关键决策时解释你的理由"
-2. 关注 Agent 的"选择 X 而不是 Y"、"排查步骤"等信号
-3. 建议 3-5 天内完成一次有意义的开发后回来复盘
+📋 Checking reviews... review-schedule.md loaded
+
+Due today: 3 questions
+🟡 Q-001 Redis Caching Strategy — Last score 1 — Interval 3 days
+🟡 Q-003 Docker Container Troubleshooting — Last score 1 — Interval 1 day
+🟡 Q-007 PostgreSQL vs MongoDB — Last score 0 — Interval 1 day
+
+Start with due reviews or begin a new review session?
 ```
 
-完整演示见 [示例零](references/examples.md#示例零冷启动流程)
+Full demo: [Example 5](references/examples.md#example-5-spaced-repetition-flow)
 
 ---
 
-### 示例五：季度归档审查
+### Example 4: Cold Start (First Use)
 
-使用超过 90 天后，自动触发审查：
+When there is no conversation history, the Skill provides a concrete startup path instead of fabricating content:
 
 ```
-AI：📦 季度知识库审查
+AI: Since there are no existing conversation records, here's a minimal startup path:
 
-超过 180 天（3 条）——建议优先处理：
-  - Q-002 Angular 组件通信 — 2026-01-10 — Angular 15
-  - 坑-003 Webpack 配置优化 — 2025-12-20 — Webpack 4
-  - KB-005 jQuery AJAX 全局配置 — 2025-11-15 — jQuery 3.6
-
-每条回复：[仍有效] / [已过时] / [已替代] / [稍后审查]
+1. Next time you develop with an Agent, say "please explain your reasoning for key decisions" at the start
+2. Watch for signals like "chose X over Y", troubleshooting steps, etc.
+3. Come back to review after a meaningful development session within 3-5 days
 ```
 
-完整演示见 [示例六](references/examples.md#示例六季度归档审查)
+Full demo: [Example 0](references/examples.md#example-0-cold-start-flow)
 
 ---
 
-## 7. 工作原理 / How It Works
+### Example 5: Quarterly Archival Review
 
-### 7.1 整体架构
+After 90+ days of use, an automatic review triggers:
+
+```
+AI: 📦 Quarterly Knowledge Base Review
+
+Over 180 days (3 entries) — Suggest handling first:
+  - Q-002 Angular Component Communication — 2026-01-10 — Angular 15
+  - Pitfall-003 Webpack Config Optimization — 2025-12-20 — Webpack 4
+  - KB-005 jQuery AJAX Global Config — 2025-11-15 — jQuery 3.6
+
+Respond per entry: [Still Valid] / [Outdated] / [Superseded] / [Review Later]
+```
+
+Full demo: [Example 6](references/examples.md#example-6-quarterly-archival-review)
+
+---
+
+## 7. How It Works
+
+### 7.1 Overall Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    用户输入 / User Input                  │
-│        （Agent 对话记录 / 项目描述 / 手动构造）             │
+│                     User Input                           │
+│      (Agent conversation logs / project descriptions)    │
 └────────────────────────┬────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────┐
-│              第零步：画像 & 范围确认                       │
-│     · 准备阶段（基础积累/能力提升/查漏补缺） → 难度自适应   │
-│     · 复盘范围（需求/架构/编码/排错/部署）                 │
-│     · 输入源选择（对话记录 / 实时捕获）                       │
+│           Step Zero: Profile & Scope Confirmation        │
+│     · Preparation stage → Difficulty auto-adaptation     │
+│     · Review scope (requirements/architecture/coding/    │
+│       debugging/deployment)                              │
+│     · Input source selection (conversation / live capture)│
 └────────────────────────┬────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────┐
-│              模式一：拦截记录 / Signal Extraction          │
-│     · 5 维度扫描（架构/编码/排错/部署/方法论）             │
-│     · 6 要素记录（上下文→问题→做法→原理→替代→迁移）         │
-│     · 信号过滤 + [待确认] 标注                            │
+│           Mode 1: Signal Extraction                      │
+│     · 5-dimension scanning                               │
+│     · 6-element recording (Context→Problem→Approach→     │
+│       Principles→Alternatives→Transfer)                   │
+│     · Signal filtering + [To Confirm] tagging            │
 └────────────────────────┬────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────┐
-│           模式二：面试题生成 / Question Generation         │
-│     · 10 类面试题（难度按画像自适应）                      │
-│     · 反事实推理（强制） + 深挖追问                        │
-│     · 口述复述 → 自评 0/1/2 → 卡住诊断                    │
-│     · 渐进式提醒（跳过 3/6/10 道递增强度）                 │
+│           Mode 2: Question Generation                    │
+│     · 10 question types (difficulty auto-adapted)        │
+│     · Counterfactual reasoning (mandatory) + deep probes │
+│     · Verbal recall → Self-score 0/1/2 → Stuck diagnosis│
+│     · Progressive reminders (escalating at 3/6/10)       │
 └────────────────────────┬────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────┐
-│          模式三：知识蒸馏 / Knowledge Distillation         │
-│     · 生成 6 个持久化文件（题库/避坑/复习调度表等）        │
-│     · SM-2 间隔复习引擎 → 自动计算下次复习日期              │
-│     · 知识衰减检测（90/180/365 天） → 季度归档审查         │
-│     · 增量去重合并                                        │
+│           Mode 3: Knowledge Distillation                 │
+│     · Generate 6 persistent files                        │
+│     · SM-2 spaced repetition engine → Auto-calculate     │
+│       next review dates                                  │
+│     · Knowledge decay detection (90/180/365 days)        │
+│     · Incremental dedup & merge                          │
 └────────────────────────┬────────────────────────────────┘
                          │
                          ▼
 ┌─────────────────────────────────────────────────────────┐
-│           持续复习循环 / Continuous Review Loop           │
-│     启动 Skill → 检查到期任务 → 复习+评分 → 更新间隔       │
+│        Continuous Review Loop                            │
+│     Launch Skill → Check due tasks → Review + Score →    │
+│     Update intervals                                     │
 └─────────────────────────────────────────────────────────┘
 ```
 
-### 7.2 SM-2 间隔复习算法
+### 7.2 SM-2 Spaced Repetition Algorithm
 
 ```
-评分 0（完全卡住）──────► 间隔 = 1 天（重新记忆）
-评分 1（部分回忆）──────► 间隔 = 当前间隔 × 0.5（不低于 1 天）
-评分 2（流畅复述）──────► 间隔 = 当前间隔 × 2（上限 120 天）
+Score 0 (completely stuck) ──► Interval = 1 day (re-memorize)
+Score 1 (partial recall)   ──► Interval = current × 0.5 (min 1 day)
+Score 2 (fluent recall)    ──► Interval = current × 2 (max 120 days)
 
-初始间隔：1 天
-间隔序列：1 → 3 → 7 → 14 → 30 → 60 → 120 天
+Initial interval: 1 day
+Interval sequence: 1 → 3 → 7 → 14 → 30 → 60 → 120 days
 ```
 
-### 7.3 难度自适应
+### 7.3 Difficulty Auto-Adaptation
 
-根据用户准备阶段调整题目难度分布：
+Question difficulty distribution adjusts based on the user's preparation stage:
 
-| 准备阶段 | 基础题 | 进阶题 | 高级题 |
-|----------|:------:|:------:|:------:|
-| 基础积累 | 35% | 50% | 15% |
-| 能力提升 | 15% | 55% | 30% |
-| 查漏补缺 | 10% | 45% | 45% |
+| Stage | Basic | Intermediate | Advanced |
+|-------|:-----:|:------------:|:--------:|
+| Foundation | 35% | 50% | 15% |
+| Skill Building | 15% | 55% | 30% |
+| Gap Filling | 10% | 45% | 45% |
 
 ---
 
-## 8. 文件结构 / Project Structure
+## 8. Project Structure
 
 ```
 vibe-upskill/
 │
-├── SKILL.md                          # ★ Skill 主文件（核心指令与工作流定义）
-│   ├── 目标与触发条件                  #    Skill 定位与激活条件
-│   ├── 用户画像与冷启动                #    自评画像、难度自适应、无对话时的引导
-│   ├── 核心原则                        #    "追问为什么"的指导思想
-│   ├── 完整工作流                      #
-│   │   ├── 第零步：输入源与复盘范围     #    两种输入模式 + 分段策略
-│   │   ├── 模式一：拦截记录             #    5维度 × 6要素提取 + 过滤规则
-│   │   ├── 模式二：面试题生成           #    10类题 × 复述机制 × 渐进式提醒
-│   │   └── 模式三：知识蒸馏             #    知识库生成 + SM-2复习引擎 + 归档机制
-│   ├── 防御机制汇总（9道）              #    质量保障体系
-│   ├── 输出指令                        #    中文输出强制规则
-│   ├── 边界情况处理                    #    输入过短/过长/无学习点等处理策略
-│   └── 附加资源引用                    #    指向 templates.md / examples.md
+├── SKILL.md                          # ★ Main Skill file (core instructions & workflow)
+│   ├── Goals & Triggers              #    Skill positioning and activation conditions
+│   ├── User Profile & Cold Start     #    Self-assessment, difficulty adaptation, no-data guidance
+│   ├── Core Principles               #    "Ask why" guiding philosophy
+│   ├── Full Workflow                 #
+│   │   ├── Step Zero: Input & Scope  #    Two input modes + segmentation strategy
+│   │   ├── Mode 1: Signal Extraction #    5 dimensions × 6 elements + filtering rules
+│   │   ├── Mode 2: Question Gen      #    10 question types × recall × progressive reminders
+│   │   └── Mode 3: Knowledge Distill #    KB generation + SM-2 engine + archival mechanism
+│   ├── Defense Mechanisms (9 total)  #    Quality assurance system
+│   ├── Output Instructions           #    Output formatting rules
+│   ├── Edge Case Handling            #    Too short / too long / no learning points
+│   └── Resource References           #    Pointers to templates.md / examples.md
 │
 ├── assets/
-│   └── templates.md                   # 输出格式模板（7 套）
-│       ├── 模板一：面试题卡片           #    含掌握度自评、下次复习日期、归档状态
-│       ├── 模板二：避坑条目             #    现象→原因→解决→预防 完整链路
-│       ├── 模板三：知识库条目           #    含技术栈版本、归档状态、审查日期
-│       ├── 模板四：知识库索引           #    全量题库/避坑/知识条目的索引格式
-│       ├── 模板四附加：复习调度卡片     #    含复习历史表、间隔变化、掌握状态
-│       ├── 模板五：归档记录             #    归档日志 + 按原因分类汇总
-│       ├── 模板六：归档条目头           #    已归档条目的警示标记
-│       └── 模板七：单次复盘报告         #    完整复盘报告输出格式
+│   └── templates.md                   # Output format templates (7 sets)
+│       ├── Template 1: Interview Card #    Mastery self-score, next review date, archive status
+│       ├── Template 2: Pitfall Entry  #    Symptom → Cause → Fix → Prevention chain
+│       ├── Template 3: KB Entry       #    Tech stack version, archive status, review date
+│       ├── Template 4: KB Index       #    Full index format for Q&A / pitfalls / KB entries
+│       ├── Template 4a: Review Card   #    Review history, interval changes, mastery status
+│       ├── Template 5: Archive Record #    Archive log + summaries by cause
+│       ├── Template 6: Archived Header#    Warning markers for archived entries
+│       └── Template 7: Review Report  #    Complete review session output format
 │
 ├── references/
-│   └── examples.md                    # 完整使用示例（6 个场景）
-│       ├── 示例零：冷启动流程           #    首次使用、无对话记录的交互演示
-│       ├── 示例一：排错对话 → 知识提炼   #    Docker 排错完整三模式处理示例
-│       ├── 示例二：架构对话 → 方案对比题 #    PostgreSQL+Neo4j 双库选型示例
-│       ├── 示例三：完整复盘对话流程      #    含难度自适应、掌握度自评、渐进提醒
-│       ├── 示例四：Claude Code 安装使用  #    跨平台安装说明
-│       ├── 示例五：间隔复习流程          #    SM-2 复习交互完整演示
-│       └── 示例六：季度归档审查         #    90/180天审查交互演示
+│   └── examples.md                    # Full usage examples (6 scenarios)
+│       ├── Example 0: Cold Start      #    First use, no conversation records
+│       ├── Example 1: Debugging → KB  #    Docker debugging full three-mode processing
+│       ├── Example 2: Architecture    #    PostgreSQL+Neo4j dual-database selection
+│       ├── Example 3: Full Flow       #    Difficulty adaptation, self-assessment, reminders
+│       ├── Example 4: Installation    #    Cross-platform Claude Code setup
+│       ├── Example 5: Spaced Review   #    SM-2 review interaction complete demo
+│       └── Example 6: Archival Review #    90/180-day review interaction demo
 │
-├── README.md                          # ★ 本文件（项目说明文档）
-├── CHANGELOG.md                       # 版本更新日志
+├── README.md                          # ★ This file (English)
+├── README_CN.md                       # Chinese README
+├── CHANGELOG.md                       # Version changelog
 └── LICENSE                            # MIT License
 ```
 
-### 运行时生成的知识库目录（由模式三创建）
+### Runtime-generated Knowledge Base Directory (created by Mode 3)
 
 ```
-your-project/knowledge/                # ← 在你的项目目录下生成
-├── interview-qa.md                    # 面试题库（按 10 类题型组织）
-├── pitfall-checklist.md               # 避坑清单（按编码/部署/架构阶段分类）
-├── architecture-notes.md              # 架构决策笔记
-├── debugging-playbook.md              # 排错手册
-├── review-schedule.md                 # 复习调度表（间隔复习引擎）
-├── knowledge-index.md                 # 知识库索引（自动维护统计数字）
-└── archive/                           # 已归档的过时条目
+your-project/knowledge/                # ← Generated in your project directory
+├── interview-qa.md                    # Interview question bank (organized by 10 types)
+├── pitfall-checklist.md               # Pitfall checklist (by coding/deployment/architecture phase)
+├── architecture-notes.md              # Architecture decision notes
+├── debugging-playbook.md              # Debugging playbook
+├── review-schedule.md                 # Review schedule (spaced repetition engine)
+├── knowledge-index.md                 # Knowledge base index (auto-maintained stats)
+└── archive/                           # Archived outdated entries
     ├── archived-qa.md
     ├── archived-pitfalls.md
     └── archive-log.md
@@ -440,51 +439,51 @@ your-project/knowledge/                # ← 在你的项目目录下生成
 
 ---
 
-## 9. 贡献指南 / Contributing
+## 9. Contributing
 
-欢迎贡献！无论是 Bug 报告、功能建议还是 Pull Request。
+Contributions are welcome! Bug reports, feature suggestions, and Pull Requests are appreciated.
 
-### 如何报告 Bug
+### How to Report a Bug
 
-1. 在 [Issues](https://github.com/bb-cccc/vibe-upskill/issues) 中创建新 Issue
-2. 描述你使用的 Claude Code 版本、操作系统、触发场景
-3. 附上相关的错误输出或异常行为描述
+1. Create a new issue in [Issues](https://github.com/bb-cccc/vibe-upskill/issues)
+2. Describe your Claude Code version, operating system, and trigger scenario
+3. Attach relevant error output or unexpected behavior description
 
-### 如何提交功能建议
+### How to Submit a Feature Request
 
-1. 在 Issues 中创建新 Issue，选择 "Feature Request" 标签
-2. 描述：这个功能解决什么问题？期望的使用流程是怎样的？
-3. 如果可能，附上参考或草图
+1. Create a new issue with the "Feature Request" label
+2. Describe: What problem does this feature solve? What's the expected usage flow?
+3. Attach references or sketches if available
 
-### Pull Request 流程
+### Pull Request Process
 
 ```bash
-# 1. Fork 仓库
-# 2. 创建特性分支
+# 1. Fork the repository
+# 2. Create a feature branch
 git checkout -b feature/my-new-feature
 
-# 3. 提交更改（遵循 Conventional Commits）
+# 3. Commit changes (follow Conventional Commits)
 git commit -m "feat: add xxx feature"
-# 或者
+# or
 git commit -m "fix: correct xxx behavior"
 
-# 4. 推送到你的 Fork
+# 4. Push to your fork
 git push origin feature/my-new-feature
 
-# 5. 创建 Pull Request
+# 5. Create a Pull Request
 ```
 
-### 提交规范
+### Commit Conventions
 
-- 使用 [Conventional Commits](https://www.conventionalcommits.org/) 格式
-- PR 标题简洁（< 70 字符），描述详细
-- 如果修改 SKILL.md 核心逻辑，请同步更新 `templates.md` 和 `examples.md`
+- Use [Conventional Commits](https://www.conventionalcommits.org/) format
+- Keep PR titles concise (< 70 characters), descriptions detailed
+- If modifying SKILL.md core logic, sync updates to `templates.md` and `examples.md`
 
 ---
 
-## 10. 许可证 / License
+## 10. License
 
-本项目采用 [MIT License](https://opensource.org/licenses/MIT)。
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ```
 MIT License
@@ -500,28 +499,26 @@ furnished to do so, subject to the following conditions:
 ...
 ```
 
-简言之：你可以自由使用、修改、分发本项目，但需保留原始版权声明。
+In short: you are free to use, modify, and distribute this project, provided you retain the original copyright notice.
 
 ---
 
-## 11. 致谢 / Acknowledgments
+## 11. Acknowledgments
 
-本项目受益于以下工作与思想：
+This project benefits from the following work and ideas:
 
-| 项目/思想 | 关联 |
-|-----------|------|
-| [SuperMemo SM-2 Algorithm](https://en.wikipedia.org/wiki/SuperMemo) | 间隔复习算法原型 |
-| [Anki](https://apps.ankiweb.net/) | 间隔复习系统的现代实践 |
-| [Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/skills) | Skill 系统架构参考 |
-| [Conventional Commits](https://www.conventionalcommits.org/) | 提交规范 |
-| [反事实推理 (Counterfactual Reasoning)](https://plato.stanford.edu/entries/causation-counterfactual/) | 面试题设计核心方法论 |
+| Project / Idea | Relevance |
+|----------------|-----------|
+| [SuperMemo SM-2 Algorithm](https://en.wikipedia.org/wiki/SuperMemo) | Spaced repetition algorithm prototype |
+| [Anki](https://apps.ankiweb.net/) | Modern practice of spaced repetition systems |
+| [Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/skills) | Skill system architecture reference |
+| [Conventional Commits](https://www.conventionalcommits.org/) | Commit convention |
+| [Counterfactual Reasoning](https://plato.stanford.edu/entries/causation-counterfactual/) | Core methodology for interview question design |
 
-特别感谢所有在 Vibe Coding 领域探索的开发者——这个问题值得被认真对待。
+Special thanks to all developers exploring the Vibe Coding frontier — this problem deserves to be taken seriously.
 
 ---
 
 <p align="center">
   <sub>Made with ❤️ for developers who refuse to let AI think for them.</sub>
-  <br>
-  <sub>为那些拒绝让 AI 替自己思考的开发者而建。</sub>
 </p>
